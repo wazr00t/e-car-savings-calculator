@@ -10,20 +10,38 @@
   <div class="container">
     <h1>Savings Calculator</h1>
     <div class="input-container">
-      <label for="efficiency">Current Vehicle Efficiency (MPG):</label>
+      <label for="efficiency">Current Vehicle Efficiency:</label>
       <input type="number" id="efficiency" placeholder="e.g., 25" min="0">
+      <select id="system">
+        <option value="mpg">MPG (Miles per Gallon)</option>
+        <option value="kpl">KPL (Kilometers per Liter)</option>
+      </select>
     </div>
     <div class="input-container">
-      <label for="cost">Cost per Gallon (USD):</label>
+      <label for="cost">Cost per Gallon/Liter:</label>
       <input type="number" id="cost" placeholder="e.g., 3" min="0">
+      <select id="currency">
+        <option value="usd">USD</option>
+        <option value="eur">EUR</option>
+        <option value="gbp">GBP</option>
+      </select>
     </div>
     <div class="input-container">
-      <label for="miles">Miles Driven per Year:</label>
-      <input type="number" id="miles" placeholder="e.g., 12000" min="0">
+      <label for="miles">Miles/Kilometers Driven per Year:</label>
+      <input type="number" id="distance" placeholder="e.g., 12000" min="10000" max="100000">
+      <select id="distanceUnit">
+        <option value="miles">Miles</option>
+        <option value="km">Kilometers</option>
+      </select>
     </div>
     <div class="input-container">
-      <label for="electricCost">Cost per kWh (USD):</label>
+      <label for="electricCost">Cost per kWh:</label>
       <input type="number" id="electricCost" placeholder="e.g., 0.1" min="0">
+      <select id="electricCurrency">
+        <option value="usd">USD</option>
+        <option value="eur">EUR</option>
+        <option value="gbp">GBP</option>
+      </select>
     </div>
     <button id="calculateBtn">Calculate Savings</button>
     <div id="savingsResult"></div>
