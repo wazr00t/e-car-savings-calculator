@@ -1,60 +1,33 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const calculateBtn = document.getElementById("calculateBtn");
+  calculateBtn.addEventListener("click", calculateSavings);
 
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  function calculateSavings() {
+    const efficiency = parseFloat(document.getElementById("efficiency").value);
+    const system = document.getElementById("system").value;
+    const cost = parseFloat(document.getElementById("cost").value);
+    const currency = document.getElementById("currency").value;
+    const distance = parseFloat(document.getElementById("distance").value);
+    const distanceUnit = document.getElementById("distanceUnit").value;
+    const electricCost = parseFloat(document.getElementById("electricCost").value);
+    const electricCurrency = document.getElementById("electricCurrency").value;
 
-h1 {
-  text-align: center;
-  color: #333;
-}
+    if (isNaN(efficiency) || isNaN(cost) || isNaN(distance) || isNaN(electricCost)) {
+      alert("Please enter valid numeric values.");
+      return;
+    }
 
-.input-container {
-  margin-bottom: 10px;
-}
+    const milesPerGallon = system === "mpg" ? efficiency : 235.214 / efficiency;
+    const litersPerKilometer = system === "kpl" ? efficiency : 100 / efficiency;
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
-}
+    const annualFuelConsumption = distanceUnit === "miles" ? distance / milesPerGallon : distance / litersPerKilometer;
+    const annualFuelCost = annualFuelConsumption * cost;
 
-input, select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+    const electricVehicleCost = (distance / 100) * electricCost;
 
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    const savings = (annualFuelCost - electricVehicleCost).toFixed(2);
 
-button:hover {
-  background-color: #0056b3;
-}
-
-#savingsResult {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
+    const savingsResult = document.getElementById("savingsResult");
+    savingsResult.innerHTML = `Savings: ${currency === "usd" ? "$" : currency === "eur" ? "€" : "£"}${savings}`;
+  }
+});
