@@ -1,24 +1,60 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const calculateBtn = document.getElementById("calculateBtn");
-  calculateBtn.addEventListener("click", calculateSavings);
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
 
-  function calculateSavings() {
-    const efficiency = parseFloat(document.getElementById("efficiency").value);
-    const cost = parseFloat(document.getElementById("cost").value);
-    const miles = parseFloat(document.getElementById("miles").value);
-    const electricCost = parseFloat(document.getElementById("electricCost").value);
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-    if (isNaN(efficiency) || isNaN(cost) || isNaN(miles) || isNaN(electricCost)) {
-      alert("Please enter valid numeric values.");
-      return;
-    }
+h1 {
+  text-align: center;
+  color: #333;
+}
 
-    const annualFuelConsumption = miles / efficiency;
-    const annualFuelCost = annualFuelConsumption * cost;
-    const electricVehicleCost = (miles / 100) * electricCost;
-    const savings = (annualFuelCost - electricVehicleCost).toFixed(2);
+.input-container {
+  margin-bottom: 10px;
+}
 
-    const savingsResult = document.getElementById("savingsResult");
-    savingsResult.innerHTML = `Savings: $${savings}`;
-  }
-});
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#savingsResult {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
